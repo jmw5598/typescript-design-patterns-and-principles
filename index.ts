@@ -18,6 +18,11 @@ import { DataSorter } from './design-patterns/strategy/data-sorter.impl';
 import { DescSortStrategy } from './design-patterns/strategy/desc-sort-strategy.impl';
 import { AscSortStrategy } from './design-patterns/strategy/asc-sort-strategy.impl';
 
+import { INotifier } from './design-patterns/decorator/notifier.interface';
+import { EmailNotifier } from './design-patterns/decorator/email-notifier.impl';
+import { SmsNotifier } from './design-patterns/decorator/sms-notifier.impl';
+import { FacebookNotifier } from './design-patterns/decorator/facebook-notifier.impl';
+
 console.log('DatbaseConnection (Singleton Pattern)');
 console.log('-------------------------------------');
 
@@ -106,5 +111,12 @@ const sorter: DataSorter<number> = new DataSorter<number>(descStrategy);
 console.log('Desc: ', sorter.sortData(data));
 sorter.setStrategy(ascStrategy);
 console.log('Asc: ', sorter.sortData(data));
+console.log('\n');
 
+console.log('Notifier Decorator (Decorator Pattern)');
+console.log('--------------------------------------');
 
+const notifier: INotifier = new EmailNotifier(
+  new SmsNotifier(new FacebookNotifier(null)));
+
+notifier.send("This is a test message");
