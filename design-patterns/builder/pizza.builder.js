@@ -1,5 +1,5 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 var pizza_ingredients_enum_1 = require("./pizza-ingredients.enum");
 var pizza_model_1 = require("./pizza.model");
 var PizzaBuilder = /** @class */ (function () {
