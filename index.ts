@@ -10,6 +10,10 @@ import { RoleAuthorizationRequestHandler } from './design-patterns/chain-of-resp
 import { AuthenticationRequestHandler } from './design-patterns/chain-of-responsibility/authentication-request.handler';
 import { HttpRequest } from './design-patterns/chain-of-responsibility/http-request.model';
 import { HttpResponse } from './design-patterns/chain-of-responsibility/http-response.model';
+import { SaveEventListener } from './design-patterns/observer/save-event-listener.impl';
+import { EventManager } from './design-patterns/observer/event-manager.impl';
+import { EventType } from './design-patterns/observer/event-type.enum';
+import { EditEventListener } from './design-patterns/observer/edit-event-listener.impl';
 
 console.log('DatbaseConnection (Singleton Pattern)');
 console.log('-------------------------------------');
@@ -67,4 +71,22 @@ const response: HttpResponse = new HttpResponse();
 
 authenticationHandler.next(request, response);
 
+console.log('\n');
+
+console.log('EventManager/EventListener (Observer Pattern)');
+console.log('---------------------------------------------');
+
+const manager = new EventManager();
+const save1 = new SaveEventListener('docx');
+const save2 = new SaveEventListener('pdf');
+const edit1 = new EditEventListener('pdf');
+const edit2 = new EditEventListener('docx');
+
+manager.subscribe(EventType.SAVE,save1);
+manager.subscribe(EventType.SAVE, save2);
+manager.subscribe(EventType.UPDATE, edit1);
+manager.subscribe(EventType.UPDATE, edit2);
+
+manager.notify(EventType.SAVE, 'Test saving a document');
+manager.notify(EventType.UPDATE, 'Editing a document');
 console.log('\n');
