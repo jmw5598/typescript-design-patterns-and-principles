@@ -14,6 +14,9 @@ import { SaveEventListener } from './design-patterns/observer/save-event-listene
 import { EventManager } from './design-patterns/observer/event-manager.impl';
 import { EventType } from './design-patterns/observer/event-type.enum';
 import { EditEventListener } from './design-patterns/observer/edit-event-listener.impl';
+import { DataSorter } from './design-patterns/strategy/data-sorter.impl';
+import { DescSortStrategy } from './design-patterns/strategy/desc-sort-strategy.impl';
+import { AscSortStrategy } from './design-patterns/strategy/asc-sort-strategy.impl';
 
 console.log('DatbaseConnection (Singleton Pattern)');
 console.log('-------------------------------------');
@@ -90,3 +93,18 @@ manager.subscribe(EventType.UPDATE, edit2);
 manager.notify(EventType.SAVE, 'Test saving a document');
 manager.notify(EventType.UPDATE, 'Editing a document');
 console.log('\n');
+
+
+console.log('DataSorter (Strategy Pattern)');
+console.log('-----------------------------');
+
+const data: number[] = [4,34,2,1,66,3,2];
+const descStrategy: DescSortStrategy<number> = new DescSortStrategy<number>();
+const ascStrategy: AscSortStrategy<number> = new AscSortStrategy<number>();
+const sorter: DataSorter<number> = new DataSorter<number>(descStrategy);
+
+console.log('Desc: ', sorter.sortData(data));
+sorter.setStrategy(ascStrategy);
+console.log('Asc: ', sorter.sortData(data));
+
+
