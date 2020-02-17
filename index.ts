@@ -1,23 +1,35 @@
+// Singleton
 import { DatabaseConnection } from './design-patterns/singleton/database.connection';
+
+// Builder
 import { Topping, Crust, Sauce } from './design-patterns/builder/pizza-ingredients.enum';
 import { Pizza } from './design-patterns/builder/pizza.model';
 import { IPizzaBuilder } from './design-patterns/builder/pizza-builder.interface';
 import { PizzaBuilder } from './design-patterns/builder/pizza.builder';
+
+// Prototype
 import { CalendarEvent } from './design-patterns/prototype/calendar-event.model';
+
+// Chain of Responsibility
 import { AuthorityAuthorizationRequestHandler } from './design-patterns/chain-of-responsibility/authority-authorization-request.handler';
 import { ScopeAuthorizationRequestHandler } from './design-patterns/chain-of-responsibility/scope-authorization-request.handler';
 import { RoleAuthorizationRequestHandler } from './design-patterns/chain-of-responsibility/role-authorization-request.handler';
 import { AuthenticationRequestHandler } from './design-patterns/chain-of-responsibility/authentication-request.handler';
 import { HttpRequest } from './design-patterns/chain-of-responsibility/http-request.model';
 import { HttpResponse } from './design-patterns/chain-of-responsibility/http-response.model';
+
+// Observer
 import { SaveEventListener } from './design-patterns/observer/save-event-listener.impl';
 import { EventManager } from './design-patterns/observer/event-manager.impl';
 import { EventType } from './design-patterns/observer/event-type.enum';
 import { EditEventListener } from './design-patterns/observer/edit-event-listener.impl';
+
+// Strategy
 import { DataSorter } from './design-patterns/strategy/data-sorter.impl';
 import { DescSortStrategy } from './design-patterns/strategy/desc-sort-strategy.impl';
 import { AscSortStrategy } from './design-patterns/strategy/asc-sort-strategy.impl';
 
+// Decorator
 import { INotifier } from './design-patterns/decorator/notifier.interface';
 import { EmailNotifier } from './design-patterns/decorator/email-notifier.impl';
 import { SmsNotifier } from './design-patterns/decorator/sms-notifier.impl';
