@@ -35,6 +35,12 @@ import { EmailNotifier } from './design-patterns/decorator/email-notifier.impl';
 import { SmsNotifier } from './design-patterns/decorator/sms-notifier.impl';
 import { FacebookNotifier } from './design-patterns/decorator/facebook-notifier.impl';
 
+// Mediator
+import { User } from './design-patterns/mediator/user.model';
+import { ChatUser } from './design-patterns/mediator/chat-user.model';
+import { IChatRoom } from './design-patterns/mediator/chat-room.interface';
+import { ChatRoom } from './design-patterns/mediator/chat-room.impl';
+
 console.log('DatbaseConnection (Singleton Pattern)');
 console.log('-------------------------------------');
 
@@ -132,3 +138,19 @@ const notifier: INotifier = new EmailNotifier(
   new SmsNotifier(new FacebookNotifier(null)));
 
 notifier.send("This is a test message");
+console.log('\n');
+
+console.log('Chatroom with Users (Mediator Pattern)');
+console.log('--------------------------------------');
+
+const chatroom: IChatRoom = new ChatRoom();
+const user1: User = new ChatUser(chatroom, '123', 'John');
+const user2: User = new ChatUser(chatroom, '124', 'Joe');
+
+chatroom.addUser(user1);
+chatroom.addUser(user2);
+chatroom.addUser(user1);
+
+user1.send('Hey from John', '124');
+user2.send('Hey from Joe', '123');
+user2.send('hey from Joe again', '125');
