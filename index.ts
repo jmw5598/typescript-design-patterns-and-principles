@@ -41,6 +41,10 @@ import { ChatUser } from './design-patterns/mediator/chat-user.model';
 import { IChatRoom } from './design-patterns/mediator/chat-room.interface';
 import { ChatRoom } from './design-patterns/mediator/chat-room.impl';
 
+// State
+import { DeliveryContext } from './design-patterns/state/delivery-context.impl';
+import { AcknowledgedState } from './design-patterns/state/acknowledged-state.impl';
+
 console.log('DatbaseConnection (Singleton Pattern)');
 console.log('-------------------------------------');
 
@@ -154,3 +158,17 @@ chatroom.addUser(user1);
 user1.send('Hey from John', '124');
 user2.send('Hey from Joe', '123');
 user2.send('hey from Joe again', '125');
+
+console.log('\n');
+
+console.log('Package Delivery (State Pattern)');
+console.log('--------------------------------');
+
+const context: DeliveryContext = new DeliveryContext(AcknowledgedState.getInstance(), '1234');
+context.update(); // acknoledged
+context.update(); // shipped
+context.update(); // in-transite
+context.update(); // out for delivery
+context.update(); // delievered
+
+console.log('\n');
